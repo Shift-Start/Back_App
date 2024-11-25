@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة مستخدم</title>
+</head>
+<body>
+    <h1>إضافة مستخدم جديد</h1>
+
+    {% if error_message %}
+        <div style="color: red;">
+            <strong>خطأ:</strong> {{ error_message }}
+        </div>
+    {% endif %}
+    <form method="POST" action="{% url 'create_habit' %}">
+        {% csrf_token %}
+        <label for="user_id">مستخدم:</label>
+        <select name="user_id">
+            {% for user in users %}
+                <option value="{{ user.id }}">{{ user.username }}</option>
+            {% endfor %}
+        </select>
+    
+        <label for="habit_name">اسم العادة:</label>
+        <input type="text" id="habit_name" name="habit_name" required>
+    
+        <label for="frequency">التكرار:</label>
+        <select name="frequency" required>
+            <option value="daily">يومي</option>
+            <option value="weekly">أسبوعي</option>
+        </select>
+    
+        <label for="start_time">وقت البدء:</label>
+        <input type="datetime-local" id="start_time" name="start_time" required>
+    
+        <label for="end_time">وقت الانتهاء:</label>
+        <input type="datetime-local" id="end_time" name="end_time" required>
+    
+        <button type="submit">إضافة العادة</button>
+    </form>
+  
+
+    <a href="{% url 'user_list' %}">العودة إلى قائمة المستخدمين</a>
+    <p>ليس لديك حساب؟ <a href="{% url 'login' %}">لديك حساب </a></p>
+</body>
+</html> 

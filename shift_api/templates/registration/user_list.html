@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قائمة المستخدمين</title>
+</head>
+<body>
+    <h1>قائمة المستخدمين</h1>
+    <ul>
+        {% for user in users %}
+            <li>{{ user.username }} - <a href="{% url 'delete_user' user.id %}">حذف</a></li>
+        {% endfor %}
+    </ul>
+    {% if current_user.is_authenticated %}
+        <a href="{% url 'home' current_user.username current_user.id %}">العودة إلى الصفحة الرئيسية</a>
+    {% else %}
+        <p>يرجى طلب صلاحيات لمشاهدة المزيد من الخيارات.</p>
+    {% endif %}
+</body>
+</html>

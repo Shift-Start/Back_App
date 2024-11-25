@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة مستخدم</title>
+</head>
+<body>
+    <h1>إضافة مستخدم جديد</h1>
+
+    {% if error_message %}
+        <div style="color: red;">
+            <strong>خطأ:</strong> {{ error_message }}
+        </div>
+    {% endif %}
+    <form method="POST" action="{% url 'create_team_task' %}">
+        {% csrf_token %}
+        <label for="team_id">فريق:</label>
+        <select name="team_id">
+            {% for team in teams %}
+                <option value="{{ team.id }}">{{ team.team_name }}</option>
+            {% endfor %}
+        </select>
+    
+        <label for="task_name">اسم المهمة:</label>
+        <input type="text" id="task_name" name="task_name" required>
+    
+        <label for="description">الوصف:</label>
+        <textarea id="description" name="description"></textarea>
+    
+        <label for="start_time">وقت البدء:</label>
+        <input type="datetime-local" id="start_time" name="start_time" required>
+    
+        <label for="end_time">وقت الانتهاء:</label>
+        <input type="datetime-local" id="end_time" name="end_time" required>
+    
+        <button type="submit">إضافة المهمة الجماعية</button>
+    </form>
+  
+
+    <a href="{% url 'user_list' %}">العودة إلى قائمة المستخدمين</a>
+    <p>ليس لديك حساب؟ <a href="{% url 'login' %}">لديك حساب </a></p>
+</body>
+</html> 

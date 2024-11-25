@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة مستخدم</title>
+</head>
+<body>
+    <h1>إضافة مستخدم جديد</h1>
+
+    {% if error_message %}
+        <div style="color: red;">
+            <strong>خطأ:</strong> {{ error_message }}
+        </div>
+    {% endif %}
+    <form method="POST" action="{% url 'create_template' %}">
+        {% csrf_token %}
+        <label for="template_name">اسم القالب:</label>
+        <input type="text" id="template_name" name="template_name" required>
+    
+        <label for="description">الوصف:</label>
+        <textarea id="description" name="description"></textarea>
+    
+        <label for="user_id">مستخدم:</label>
+        <select name="user_id">
+            {% for user in users %}
+                <option value="{{ user.id }}">{{ user.username }}</option>
+            {% endfor %}
+        </select>
+    
+        <button type="submit">إضافة القالب</button>
+    </form>
+
+    <a href="{% url 'user_list' %}">العودة إلى قائمة المستخدمين</a>
+    <p>ليس لديك حساب؟ <a href="{% url 'login' %}">لديك حساب </a></p>
+</body>
+</html> 

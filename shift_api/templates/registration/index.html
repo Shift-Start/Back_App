@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة الرئيسية</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>مرحبًا بك في تطبيق Django الخاص بي</h1>
+    <p>استخدم الروابط التالية للتفاعل مع MongoDB:</p>
+    <ul>
+        <li>إذا كان لديك حساب، يرجى تسجيل الدخول</li>
+        <li><a href="{% url 'login' %}">تسجيل الدخول</a></li>
+        <li>إنشاء حساب</li>
+        <li><a href="{% url 'register' %}">تسجيل</a></li>
+    </ul>
+</body>
+</html>

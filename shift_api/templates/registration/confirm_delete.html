@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأكيد الحذف</title>
+</head>
+<body>
+    <h1>هل أنت متأكد أنك تريد حذف هذا المستخدم؟</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">نعم، حذف المستخدم</button>
+    </form>
+
+    <a href="{% url 'user_list' %}">إلغاء</a>
+</body>
+</html>
